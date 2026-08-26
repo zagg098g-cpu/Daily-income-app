@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Daily Income - উপার্জন করুন</title>
+
+    <!-- ===== PWA ম্যানিফেস্ট ===== -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkRhaWx5IEluY29tZSIsCiAgInNob3J0X25hbWUiOiAiRGFpbHlJbmNvbWUiLAogICJkZXNjcmlwdGlvbiI6ICLgpofgpqXgpr7gpqEg4Kam4Ka-4Kaw4Ka-4KaoIOCmqOCnjeCmsOCmv-CmnCDgpqjgpr7gpqDgpr8iLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBiMTEyMCIsCiAgInRoZW1lX2NvbG9yIjogIiMxYTI1M2EiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDEwMCAxMDAlJyUzRSUzQ3JlY3Qgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnIHJ4PScyMCcgZmlsbD0nJTIzM2I4MmY2Jy8lM0UlM0N0ZXh0IHg9JzUwJyB5PSc2MCcgZm9udC1zaXplPSc0MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nJTIzZmZmJyUzRSUyNUIlM0MvdGV4dCUzRSUzQy9zdmclM0UiLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFzayBhbnlsYW5nIgogICAgfQogIF0KfQ==" />
+
+    <!-- ===== Google Font & Font Awesome ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ===== রিসেট ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(145deg, #0b1120 0%, #1a253a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #e8edf5;
+        }
+
+        /* ===== প্রধান কার্ড ===== */
+        .app-card {
+            max-width: 480px;
+            width: 100%;
+            background: rgba(22, 34, 58, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 32px 24px 38px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: transform 0.25s ease;
+            text-align: center;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ===== লোগো ===== */
+        .logo {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            color: #fff;
+            margin: 0 auto 16px;
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.35);
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+
+        /* ===== ফিচার লিস্ট ===== */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        .feature-item {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 14px;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #cbd5e1;
+        }
+
+        .feature-item i {
+            font-size: 18px;
+            color: #60a5fa;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* ===== ডাউনলোড বাটন ===== */
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, #3b82f6, #7c3aed);
+            border: none;
+            border-radius: 18px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.25s;
+            box-shadow: 0 8px 28px rgba(59, 130, 246, 0.35);
+            text-decoration: none;
+            margin-bottom: 16px;
+        }
+
+        .download-btn:active {
+            transform: scale(0.96);
+        }
+
+        .download-btn i {
+            font-size: 24px;
+        }
+
+        .download-btn .small-text {
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* ===== সেকেন্ডারি বাটন ===== */
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            color: #94a3b8;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .secondary-btn i {
+            font-size: 16px;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        /* ===== স্ট্যাটাস বার ===== */
+        .status-bar {
+            margin-top: 20px;
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 14px;
+            font-size: 13px;
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .status-bar i {
+            color: #34d399;
+            font-size: 16px;
+        }
+
+        /* ===== ইনস্টলেশন গাইড ===== */
+        .install-guide {
+            margin-top: 20px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 16px;
+            padding: 16px 18px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: none;
+        }
+
+        .install-guide.visible {
+            display: block;
+            animation: fadeSlide 0.4s ease;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .install-guide h4 {
+            font-size: 15px;
+            color: #e8edf5;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .install-guide h4 i {
+            color: #fbbf24;
+        }
+
+        .install-guide ol {
+            padding-left: 22px;
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .install-guide ol li {
+            margin-bottom: 2px;
+        }
+
+        /* ===== টোস্ট ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(14px);
+            padding: 14px 28px;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #e8edf5;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: opacity 0.35s, transform 0.35s;
+            pointer-events: none;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast i {
+            font-size: 20px;
+        }
+        .toast.success i {
+            color: #34d399;
+        }
+        .toast.error i {
+            color: #f87171;
+        }
+        .toast.info i {
+            color: #60a5fa;
+        }
+
+        /* ===== রেসপন্সিভ ===== */
+        @media (max-width: 420px) {
+            .app-card {
+                padding: 24px 16px 30px;
+                border-radius: 28px;
+            }
+
+            .logo {
+                width: 72px;
+                height: 72px;
+                font-size: 34px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .download-btn {
+                font-size: 17px;
+                padding: 16px 20px;
+            }
+
+            .action-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .secondary-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ===== স্ক্রলবার ===== */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== প্রধান কার্ড ===== -->
+    <div class="app-card">
+
+        <!-- লোগো -->
+        <div class="logo">
+            <i class="fas fa-coins"></i>
+        </div>
+
+        <h1>Daily Income</h1>
+        <p class="subtitle">প্রতিদিন উপার্জন করুন &bull; লাকি স্পিন &bull; চেক-ইন</p>
+
+        <!-- ফিচার -->
+        <div class="features">
+            <div class="feature-item">
+                <i class="fas fa-spinner"></i> লাকি স্পিন
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-image"></i> স্ক্রিনশট জমা
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-calendar-check"></i> দৈনিক চেক-ইন
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-bell"></i> নোটিফিকেশন
+            </div>
+        </div>
+
+        <!-- ডাউনলোড বাটন -->
+        <a href="https://daily-income-bv43.vercel.app/" target="_blank" rel="noopener noreferrer" class="download-btn" id="downloadBtn">
+            <i class="fas fa-download"></i>
+            <span>
+                অ্যাপ ডাউনলোড করুন
+                <span class="small-text"><br />এখনই ব্যবহার করুন</span>
+            </span>
+        </a>
+
+        <!-- অ্যাকশন রো -->
+        <div class="action-row">
+            <button class="secondary-btn" id="shareBtn">
+                <i class="fas fa-share-nodes"></i> শেয়ার করো
+            </button>
+            <button class="secondary-btn" id="installGuideBtn">
+                <i class="fas fa-circle-question"></i> ইনস্টল গাইড
+            </button>
+        </div>
+
+        <!-- স্ট্যাটাস -->
+        <div class="status-bar">
+            <i class="fas fa-circle-check"></i>
+            <span>সর্বশেষ সংস্করণ &bull; অ্যান্ড্রয়েড ৭.০+</span>
+        </div>
+
+        <!-- ইনস্টলেশন গাইড -->
+        <div class="install-guide" id="installGuide">
+            <h4><i class="fas fa-lightbulb"></i> কীভাবে ইনস্টল করবেন?</h4>
+            <ol>
+                <li><strong>ডাউনলোড</strong> বাটনে ক্লিক করুন</li>
+                <li>ব্রাউজার <strong>"ডাউনলোড"</strong> অপশন সিলেক্ট করুন</li>
+                <li>ডাউনলোড শেষ হলে <strong>ফাইলটি</strong> ওপেন করুন</li>
+                <li><strong>"ইনস্টল"</strong> বাটনে ক্লিক করুন</li>
+                <li>অ্যাপটি খুলে <strong>উপার্জন</strong> শুরু করুন!</li>
+            </ol>
+            <p style="margin-top:12px;font-size:13px;color:#94a3b8;">
+                <i class="fas fa-shield" style="margin-right:6px;"></i>
+                অজানা উৎস থেকে ইনস্টল অনুমতি দিন (সেটিংস → সিকিউরিটি)
+            </p>
+        </div>
+
+    </div>
+
+    <!-- ===== টোস্ট ===== -->
+    <div class="toast" id="toast">
+        <i class="fas fa-circle-check"></i>
+        <span id="toastMsg">কপি হয়েছে!</span>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ===== জাভাস্ক্রিপ্ট ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            const downloadBtn = document.getElementById('downloadBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            const installGuideBtn = document.getElementById('installGuideBtn');
+            const installGuide = document.getElementById('installGuide');
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+
+            const APP_URL = 'https://daily-income-bv43.vercel.app/';
+
+            // ---- টোস্ট ----
+            function showToast(message, type = 'success') {
+                toast.className = 'toast ' + type;
+                toastMsg.textContent = message;
+                const icon = toast.querySelector('i');
+                if (type === 'success') icon.className = 'fas fa-circle-check';
+                else if (type === 'error') icon.className = 'fas fa-circle-exclamation';
+                else icon.className = 'fas fa-circle-info';
+                toast.classList.add('show');
+                clearTimeout(toast._timer);
+                toast._timer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2800);
+            }
+
+            // ---- শেয়ার ----
+            function handleShare() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Daily Income - উপার্জন করুন',
+                        text: 'প্রতিদিন উপার্জন করুন! লাকি স্পিন, স্ক্রিনশট জমা, চেক-ইন ও আরও অনেক কিছু।',
+                        url: APP_URL,
+                    }).then(() => {
+                        showToast('শেয়ার করা হয়েছে!', 'success');
+                    }).catch((err) => {
+                        if (err.name !== 'AbortError') {
+                            showToast('শেয়ার করা যায়নি', 'error');
+                        }
+                    });
+                } else {
+                    // ফallback: লিংক কপি
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(APP_URL)
+                            .then(() => {
+                                showToast('লিংক কপি হয়েছে! এখন পেস্ট করে শেয়ার করুন', 'info');
+                            })
+                            .catch(() => {
+                                fallbackCopy(APP_URL);
+                            });
+                    } else {
+                        fallbackCopy(APP_URL);
+                    }
+                }
+            }
+
+            function fallbackCopy(text) {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                ta.style.top = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                try {
+                    document.execCommand('copy');
+                    showToast('লিংক কপি হয়েছে!', 'success');
+                } catch (_) {
+                    showToast('কপি করা যায়নি', 'error');
+                }
+                document.body.removeChild(ta);
+            }
+
+            // ---- ইনস্টল গাইড টগল ----
+            function toggleGuide() {
+                installGuide.classList.toggle('visible');
+                if (installGuide.classList.contains('visible')) {
+                    installGuideBtn.innerHTML = '<i class="fas fa-circle-xmark"></i> গাইড বন্ধ করুন';
+                } else {
+                    installGuideBtn.innerHTML = '<i class="fas fa-circle-question"></i> ইনস্টল গাইড';
+                }
+            }
+
+            // ---- ডাউনলোড ট্র্যাকিং (ইভেন্ট) ----
+            function trackDownload() {
+                // ইউজার ডাউনলোড বাটনে ক্লিক করলে
+                // (আমরা আসলে ভেরসেল লিংকেই নিয়ে যাচ্ছি)
+                showToast('অ্যাপ পেজে রিডাইরেক্ট হচ্ছে...', 'info');
+            }
+
+            // ---- ইভেন্ট লিসেনার ----
+            downloadBtn.addEventListener('click', trackDownload);
+            shareBtn.addEventListener('click', handleShare);
+            installGuideBtn.addEventListener('click', toggleGuide);
+
+            // ---- PWA ইনস্টল প্রম্পট (ঐচ্ছিক) ----
+            let deferredPrompt;
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                // ডাউনলোড বাটন পরিবর্তন করে "ইনস্টল করুন" দেখানো যেতে পারে
+                // কিন্তু আমরা চাই ইউজার ভেরসেল লিংকেই যাক
+            });
+
+            // ---- স্বাগতম বার্তা ----
+            console.log('🤑 Daily Income App - উপার্জন শুরু করুন!');
+
+        })();
+    </script>
+
+</body>
+</html>
