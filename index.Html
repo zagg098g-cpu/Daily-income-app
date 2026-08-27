@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Welcome To Our App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            -webkit-tap-highlight-color:transparent;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:'Hind Siliguri','Poppins',sans-serif;
+            min-height:100vh;
+            background:#070014;
+            color:#fff;
+            overflow-x:hidden;
+        }
+
+        body::before{
+            content:"";
+            position:fixed;
+            inset:-50%;
+            z-index:-3;
+
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255,0,153,.35), transparent 25%),
+                radial-gradient(circle at 80% 20%, rgba(0,229,255,.30), transparent 25%),
+                radial-gradient(circle at 50% 80%, rgba(139,92,246,.35), transparent 30%),
+                radial-gradient(circle at 10% 70%, rgba(0,255,170,.20), transparent 25%);
+
+            animation:magicMove 12s linear infinite;
+        }
+
+        @keyframes magicMove{
+            0%{
+                transform:rotate(0deg) scale(1);
+            }
+
+            50%{
+                transform:rotate(180deg) scale(1.2);
+            }
+
+            100%{
+                transform:rotate(360deg) scale(1);
+            }
+        }
+
+        /* PARTICLES */
+
+        .particles{
+            position:fixed;
+            inset:0;
+            overflow:hidden;
+            pointer-events:none;
+            z-index:-1;
+        }
+
+        .particle{
+            position:absolute;
+            width:7px;
+            height:7px;
+            border-radius:50%;
+            background:#fff;
+
+            box-shadow:
+                0 0 10px #fff,
+                0 0 20px #00e5ff,
+                0 0 35px #ff00c8;
+
+            animation:floatParticle linear infinite;
+            opacity:.7;
+        }
+
+        .particle:nth-child(1){
+            left:5%;
+            animation-duration:8s;
+        }
+
+        .particle:nth-child(2){
+            left:15%;
+            animation-duration:12s;
+            animation-delay:2s;
+            background:#ff00b7;
+        }
+
+        .particle:nth-child(3){
+            left:30%;
+            animation-duration:10s;
+            animation-delay:1s;
+            background:#00e5ff;
+        }
+
+        .particle:nth-child(4){
+            left:45%;
+            animation-duration:14s;
+            animation-delay:3s;
+            background:#7c4dff;
+        }
+
+        .particle:nth-child(5){
+            left:60%;
+            animation-duration:9s;
+            animation-delay:1s;
+            background:#00ffae;
+        }
+
+        .particle:nth-child(6){
+            left:75%;
+            animation-duration:13s;
+            animation-delay:2s;
+            background:#ffea00;
+        }
+
+        .particle:nth-child(7){
+            left:90%;
+            animation-duration:11s;
+            animation-delay:4s;
+            background:#ff4081;
+        }
+
+        @keyframes floatParticle{
+
+            0%{
+                transform:translateY(110vh) scale(.3);
+                opacity:0;
+            }
+
+            20%{
+                opacity:1;
+            }
+
+            100%{
+                transform:translateY(-10vh) translateX(80px) scale(1.4);
+                opacity:0;
+            }
+
+        }
+
+
+        /* APP */
+
+        .app{
+            width:100%;
+            max-width:600px;
+            margin:auto;
+            padding:20px 15px 110px;
+        }
+
+
+        /* LOGO */
+
+        .top-logo{
+            display:flex;
+            justify-content:center;
+            margin-top:15px;
+            margin-bottom:20px;
+        }
+
+        .logo-circle{
+            width:82px;
+            height:82px;
+            border-radius:28px;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            font-size:38px;
+
+            background:
+                linear-gradient(135deg,#ff00cc,#7b2cff,#00d9ff);
+
+            box-shadow:
+                0 0 20px rgba(255,0,204,.7),
+                0 0 45px rgba(0,217,255,.4);
+
+            animation:logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat{
+
+            0%,100%{
+                transform:translateY(0) rotate(-3deg);
+            }
+
+            50%{
+                transform:translateY(-8px) rotate(3deg);
+            }
+
+        }
+
+
+        /* HERO */
+
+        .hero{
+            text-align:center;
+            margin-bottom:25px;
+        }
+
+        .hero h1{
+            font-family:'Poppins',sans-serif;
+            font-size:27px;
+            font-weight:800;
+            line-height:1.4;
+
+            background:
+                linear-gradient(90deg,#ff3cac,#784ba0,#00e5ff,#ffea00);
+
+            background-size:300%;
+
+            -webkit-background-clip:text;
+            background-clip:text;
+            color:transparent;
+
+            animation:rainbowText 5s linear infinite;
+        }
+
+        @keyframes rainbowText{
+
+            0%{
+                background-position:0%;
+            }
+
+            100%{
+                background-position:300%;
+            }
+
+        }
+
+        .hero p{
+            margin-top:12px;
+            color:#d8d1e8;
+            font-size:15px;
+            line-height:1.8;
+        }
+
+
+        /* INFO CARD */
+
+        .info-card{
+            position:relative;
+            padding:20px;
+            border-radius:25px;
+
+            background:rgba(255,255,255,.07);
+            backdrop-filter:blur(18px);
+
+            border:1px solid rgba(255,255,255,.15);
+
+            box-shadow:
+                0 15px 45px rgba(0,0,0,.35);
+
+            overflow:hidden;
+            margin-bottom:20px;
+        }
+
+        .info-card::before{
+            content:"";
+            position:absolute;
+            width:180px;
+            height:180px;
+            border-radius:50%;
+            background:rgba(255,0,200,.18);
+            top:-80px;
+            right:-80px;
+            filter:blur(10px);
+        }
+
+        .info-card h2{
+            position:relative;
+            font-size:20px;
+            margin-bottom:12px;
+        }
+
+        .info-card p{
+            position:relative;
+            color:#ded8eb;
+            font-size:14px;
+            line-height:1.8;
+        }
+
+
+        /* FEATURES */
+
+        .features{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:12px;
+            margin-top:18px;
+        }
+
+        .feature{
+            padding:15px 10px;
+            border-radius:18px;
+            text-align:center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.12),
+                    rgba(255,255,255,.04)
+                );
+
+            border:1px solid rgba(255,255,255,.10);
+
+            transition:.2s;
+        }
+
+        .feature:active{
+            transform:scale(.95);
+        }
+
+        .feature-icon{
+            font-size:26px;
+            margin-bottom:6px;
+        }
+
+        .feature span{
+            font-size:13px;
+            color:#f4efff;
+        }
+
+
+        /* LIVE STATUS */
+
+        .live-status{
+            position:relative;
+            padding:20px;
+            border-radius:25px;
+            margin-top:20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,229,255,.12),
+                    rgba(255,0,200,.10),
+                    rgba(123,44,255,.12)
+                );
+
+            border:1px solid rgba(255,255,255,.15);
+
+            overflow:hidden;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.25);
+        }
+
+        .live-title{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:18px;
+        }
+
+        .live-title h2{
+            font-size:19px;
+        }
+
+        .live-badge{
+            display:flex;
+            align-items:center;
+            gap:6px;
+
+            padding:6px 10px;
+            border-radius:30px;
+
+            background:rgba(0,255,170,.12);
+            color:#00ffae;
+
+            font-size:11px;
+
+            border:1px solid rgba(0,255,170,.30);
+        }
+
+        .live-dot{
+            width:8px;
+            height:8px;
+            border-radius:50%;
+            background:#00ffae;
+
+            box-shadow:0 0 12px #00ffae;
+
+            animation:livePulse 1.5s infinite;
+        }
+
+        @keyframes livePulse{
+
+            0%{
+                transform:scale(1);
+                opacity:1;
+            }
+
+            50%{
+                transform:scale(1.5);
+                opacity:.5;
+            }
+
+            100%{
+                transform:scale(1);
+                opacity:1;
+            }
+
+        }
+
+        .live-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:12px;
+        }
+
+        .live-box{
+            padding:17px 12px;
+            border-radius:20px;
+
+            background:rgba(255,255,255,.07);
+
+            border:1px solid rgba(255,255,255,.10);
+
+            text-align:center;
+        }
+
+        .live-icon{
+            font-size:25px;
+            margin-bottom:8px;
+        }
+
+        .live-number{
+            font-family:'Poppins',sans-serif;
+            font-size:21px;
+            font-weight:700;
+            color:#fff;
+            margin-bottom:3px;
+        }
+
+        .live-label{
+            color:#c7bfd5;
+            font-size:12px;
+        }
+
+
+        /* INCOME */
+
+        .income-card{
+            margin-top:12px;
+            padding:20px;
+            border-radius:22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,193,7,.15),
+                    rgba(255,0,153,.12)
+                );
+
+            border:1px solid rgba(255,255,255,.13);
+
+            text-align:center;
+        }
+
+        .income-icon{
+            font-size:32px;
+            margin-bottom:8px;
+        }
+
+        .income-card h3{
+            font-size:14px;
+            color:#ded8eb;
+            font-weight:500;
+        }
+
+        .total-income{
+            margin-top:8px;
+
+            font-family:'Poppins',sans-serif;
+
+            font-size:27px;
+            font-weight:800;
+
+            background:
+                linear-gradient(90deg,#ffea00,#ff8a00,#ff00b8);
+
+            -webkit-background-clip:text;
+            background-clip:text;
+            color:transparent;
+        }
+
+        .income-note{
+            margin-top:6px;
+            color:#aaa0bd;
+            font-size:11px;
+        }
+
+
+        /* SMALL STATS */
+
+        .magic-stats{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:10px;
+            margin:20px 0;
+        }
+
+        .stat{
+            text-align:center;
+            padding:13px 5px;
+            border-radius:16px;
+
+            background:rgba(255,255,255,.06);
+
+            border:1px solid rgba(255,255,255,.10);
+        }
+
+        .stat strong{
+            display:block;
+            font-family:'Poppins';
+            font-size:18px;
+
+            background:
+                linear-gradient(90deg,#00e5ff,#ff00cc);
+
+            -webkit-background-clip:text;
+            background-clip:text;
+            color:transparent;
+        }
+
+        .stat span{
+            font-size:11px;
+            color:#bcb3cc;
+        }
+
+
+        /* SECTION TITLE */
+
+        .section-title{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            margin:25px 0 15px;
+            font-size:19px;
+            font-weight:700;
+        }
+
+        .section-title::after{
+            content:"";
+            height:2px;
+            flex:1;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff00cc,
+                    #00e5ff,
+                    transparent
+                );
+
+            border-radius:10px;
+        }
+
+
+        /* IMAGE */
+
+        .image-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:12px;
+        }
+
+        .image-card{
+            position:relative;
+            height:170px;
+            border-radius:20px;
+            overflow:hidden;
+
+            background:#171025;
+
+            border:1px solid rgba(255,255,255,.12);
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,.25);
+        }
+
+        .image-card img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:block;
+        }
+
+        .image-number{
+            position:absolute;
+            top:8px;
+            right:8px;
+
+            width:30px;
+            height:30px;
+
+            border-radius:50%;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            font-size:12px;
+            font-weight:bold;
+
+            background:rgba(0,0,0,.65);
+        }
+
+        .image-caption{
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:0;
+
+            padding:25px 10px 10px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0,0,0,.90)
+                );
+
+            font-size:13px;
+        }
+
+
+        /* VIDEO */
+
+        .video-list{
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
+
+        .video-card{
+            overflow:hidden;
+            border-radius:22px;
+
+            background:rgba(255,255,255,.07);
+
+            border:1px solid rgba(255,255,255,.12);
+        }
+
+        .video-placeholder{
+            height:200px;
+
+            display:flex;
+            flex-direction:column;
+
+            align-items:center;
+            justify-content:center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1a0930,
+                    #101b42
+                );
+
+            text-align:center;
+        }
+
+        .play-icon{
+            width:55px;
+            height:55px;
+
+            border-radius:50%;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            font-size:24px;
+
+            margin-bottom:10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff00b8,
+                    #00c8ff
+                );
+        }
+
+        .video-info{
+            padding:12px 15px;
+        }
+
+        .video-info h3{
+            font-size:15px;
+        }
+
+        .video-info p{
+            color:#bdb5cf;
+            font-size:12px;
+            margin-top:4px;
+        }
+
+
+        /* ENTER */
+
+        .enter-area{
+            margin-top:30px;
+            padding:22px 15px;
+            text-align:center;
+            border-radius:28px;
+
+            background:rgba(255,255,255,.06);
+
+            border:1px solid rgba(255,255,255,.10);
+        }
+
+        .enter-area p{
+            color:#d6cde6;
+            font-size:14px;
+            line-height:1.8;
+            margin-bottom:16px;
+        }
+
+        .enter-btn{
+            width:100%;
+            border:none;
+            padding:17px;
+            border-radius:18px;
+
+            color:#fff;
+
+            font-family:'Hind Siliguri',sans-serif;
+
+            font-size:18px;
+            font-weight:700;
+
+            cursor:pointer;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff00b8,
+                    #7b2cff,
+                    #00c8ff
+                );
+
+            background-size:200%;
+
+            animation:buttonGlow 3s linear infinite;
+        }
+
+        @keyframes buttonGlow{
+
+            0%{
+                background-position:0%;
+            }
+
+            100%{
+                background-position:200%;
+            }
+
+        }
+
+
+        /* TELEGRAM */
+
+        .telegram-float{
+            position:fixed;
+
+            right:18px;
+            bottom:22px;
+
+            width:62px;
+            height:62px;
+
+            border-radius:50%;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            text-decoration:none;
+
+            z-index:999;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00c6ff,
+                    #0072ff
+                );
+
+            box-shadow:
+                0 0 0 8px rgba(0,198,255,.12),
+                0 10px 30px rgba(0,114,255,.45);
+
+            animation:telegramPulse 2s infinite;
+        }
+
+        @keyframes telegramPulse{
+
+            0%{
+                transform:scale(1);
+            }
+
+            50%{
+                transform:scale(1.08);
+            }
+
+            100%{
+                transform:scale(1);
+            }
+
+        }
+
+        .headphone-icon{
+            position:relative;
+
+            width:30px;
+            height:30px;
+
+            border:4px solid #fff;
+            border-bottom:none;
+
+            border-radius:30px 30px 0 0;
+        }
+
+        .headphone-icon::before{
+            content:"";
+
+            position:absolute;
+
+            width:8px;
+            height:13px;
+
+            background:#fff;
+
+            border-radius:5px;
+
+            left:-7px;
+            top:12px;
+
+            box-shadow:32px 0 0 #fff;
+        }
+
+        footer{
+            text-align:center;
+            margin-top:25px;
+            color:#847b96;
+            font-size:12px;
+            line-height:1.8;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="particles">
+
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+
+</div>
+
+
+<main class="app">
+
+
+    <div class="top-logo">
+
+        <div class="logo-circle">
+            ✨
+        </div>
+
+    </div>
+
+
+    <section class="hero">
+
+        <h1>
+            আমাদের অ্যাপে আপনাকে স্বাগতম
+        </h1>
+
+        <p>
+            নতুন অভিজ্ঞতা এবং অসাধারণ সব ফিচারের সাথে আপনার যাত্রা শুরু করুন।
+        </p>
+
+    </section>
+
+
+    <section class="info-card">
+
+        <h2>
+            🚀 আমাদের অ্যাপ সম্পর্কে
+        </h2>
+
+        <p>
+            এই অ্যাপে আপনি পাবেন বিভিন্ন ধরনের আকর্ষণীয় ফিচার এবং সহজ ও সুন্দর একটি ব্যবহারকারী অভিজ্ঞতা।
+        </p>
+
+
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <span>দ্রুত সিস্টেম</span>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🎁</div>
+                <span>বিশেষ ফিচার</span>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔐</div>
+                <span>নিরাপদ ব্যবহার</span>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">💬</div>
+                <span>সাপোর্ট</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LIVE STATUS -->
+
+    <section class="live-status">
+
+        <div class="live-title">
+
+            <h2>
+                📊 অ্যাপের লাইভ অবস্থা
+            </h2>
+
+            <div class="live-badge">
+
+                <span class="live-dot"></span>
+
+                LIVE
+
+            </div>
+
+        </div>
+
+
+        <div class="live-grid">
+
+
+            <div class="live-box">
+
+                <div class="live-icon">
+                    👥
+                </div>
+
+                <div
+                    class="live-number"
+                    id="totalUsers">
+
+                    1,250
+
+                </div>
+
+                <div class="live-label">
+                    মোট ইউজার
+                </div>
+
+            </div>
+
+
+            <div class="live-box">
+
+                <div class="live-icon">
+                    🟢
+                </div>
+
+                <div
+                    class="live-number"
+                    id="onlineUsers">
+
+                    87
+
+                </div>
+
+                <div class="live-label">
+                    বর্তমানে অনলাইনে
+                </div>
+
+            </div>
+
+
+            <div class="live-box">
+
+                <div class="live-icon">
+                    ⚡
+                </div>
+
+                <div
+                    class="live-number"
+                    id="workingUsers">
+
+                    43
+
+                </div>
+
+                <div class="live-label">
+                    বর্তমানে কাজ করছে
+                </div>
+
+            </div>
+
+
+            <div class="live-box">
+
+                <div class="live-icon">
+                    💸
+                </div>
+
+                <div
+                    class="live-number"
+                    id="todayEarners">
+
+                    126
+
+                </div>
+
+                <div class="live-label">
+                    আজ আয় করেছে
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- TOTAL INCOME -->
+
+        <div class="income-card">
+
+            <div class="income-icon">
+                💰
+            </div>
+
+            <h3>
+                প্ল্যাটফর্মে মোট রেকর্ডকৃত আয়
+            </h3>
+
+            <div
+                class="total-income"
+                id="totalIncome">
+
+                ৳285,750
+
+            </div>
+
+            <div class="income-note">
+                Firebase Live Data
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SMALL STATS -->
+
+    <div class="magic-stats">
+
+        <div class="stat">
+
+            <strong>
+                24/7
+            </strong>
+
+            <span>
+                সাপোর্ট
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong>
+                ⚡
+            </strong>
+
+            <span>
+                দ্রুত
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <strong id="newUsersToday">
+                32
+            </strong>
+
+            <span>
+                আজ নতুন ইউজার
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- IMAGES -->
+
+    <div class="section-title">
+        🖼️ অ্যাপের ঝলক
+    </div>
+
+
+    <section class="image-grid">
+
+
+        <div class="image-card">
+
+            <img
+                src="https://placehold.co/600x600/7b2cff/ffffff?text=Image+1"
+                alt="Image 1">
+
+            <div class="image-number">
+                1
+            </div>
+
+            <div class="image-caption">
+                প্রথম ফিচার
+            </div>
+
+        </div>
+
+
+        <div class="image-card">
+
+            <img
+                src="https://placehold.co/600x600/ff00b8/ffffff?text=Image+2"
+                alt="Image 2">
+
+            <div class="image-number">
+                2
+            </div>
+
+            <div class="image-caption">
+                দ্বিতীয় ফিচার
+            </div>
+
+        </div>
+
+
+        <div class="image-card">
+
+            <img
+                src="https://placehold.co/600x600/00bcd4/ffffff?text=Image+3"
+                alt="Image 3">
+
+            <div class="image-number">
+                3
+            </div>
+
+            <div class="image-caption">
+                তৃতীয় ফিচার
+            </div>
+
+        </div>
+
+
+        <div class="image-card">
+
+            <img
+                src="https://placehold.co/600x600/ff9800/ffffff?text=Image+4"
+                alt="Image 4">
+
+            <div class="image-number">
+                4
+            </div>
+
+            <div class="image-caption">
+                চতুর্থ ফিচার
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- VIDEOS -->
+
+    <div class="section-title">
+        🎬 ভিডিও দেখুন
+    </div>
+
+
+    <section class="video-list">
+
+
+        <div class="video-card">
+
+            <div class="video-placeholder">
+
+                <div class="play-icon">
+                    ▶
+                </div>
+
+                <p>
+                    ভিডিও ১
+                </p>
+
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    ভিডিও পরিচিতি ১
+                </h3>
+
+                <p>
+                    অ্যাপ সম্পর্কে বিস্তারিত জানুন।
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="video-card">
+
+            <div class="video-placeholder">
+
+                <div class="play-icon">
+                    ▶
+                </div>
+
+                <p>
+                    ভিডিও ২
+                </p>
+
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    ভিডিও পরিচিতি ২
+                </h3>
+
+                <p>
+                    অ্যাপের বিভিন্ন ফিচার দেখুন।
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ENTER APP -->
+
+    <section class="enter-area">
+
+        <p>
+
+            সবকিছু দেখে প্রস্তুত?
+
+            <br>
+
+            এখন আপনার অ্যাপ যাত্রা শুরু করুন।
+
+        </p>
+
+
+        <button
+            class="enter-btn"
+            onclick="enterApp()">
+
+            🚀 অ্যাপে ঢুকুন
+
+        </button>
+
+    </section>
+
+
+    <footer>
+
+        © 2026 My App
+
+        <br>
+
+        সুন্দর অভিজ্ঞতার জন্য তৈরি ❤️
+
+    </footer>
+
+
+</main>
+
+
+<!-- TELEGRAM -->
+
+<a
+    href="https://t.me/your_username"
+    class="telegram-float"
+    target="_blank"
+    aria-label="Telegram Support">
+
+    <span class="headphone-icon"></span>
+
+</a>
+
+
+
+<!-- ==========================================
+     FIREBASE SDK
+========================================== -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+
+
+<script>
+
+
+/* ==========================================
+   FIREBASE CONFIG
+========================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDly3HzxKr6JAzHRwe96CBdrlmfaIuUhC8",
+
+    authDomain:
+        "zahid-7ac24.firebaseapp.com",
+
+    databaseURL:
+        "https://zahid-7ac24-default-rtdb.firebaseio.com",
+
+    projectId:
+        "zahid-7ac24",
+
+    storageBucket:
+        "zahid-7ac24.firebasestorage.app",
+
+    messagingSenderId:
+        "803923122455",
+
+    appId:
+        "1:803923122455:web:3d10a77ad4de27306dbf52",
+
+    measurementId:
+        "G-7HDHX4L7SR"
+
+};
+
+
+/* ==========================================
+   INITIALIZE FIREBASE
+========================================== */
+
+firebase.initializeApp(firebaseConfig);
+
+
+/* ==========================================
+   FIREBASE DATABASE
+========================================== */
+
+const database =
+    firebase.database();
+
+
+
+/* ==========================================
+   DEFAULT LIVE DATA
+========================================== */
+
+const liveStats = {
+
+    totalUsers: 1250,
+
+    onlineUsers: 87,
+
+    workingUsers: 43,
+
+    todayEarners: 126,
+
+    totalIncome: 285750,
+
+    newUsersToday: 32
+
+};
+
+
+
+/* ==========================================
+   NUMBER FORMAT
+========================================== */
+
+function formatNumber(number){
+
+    return Number(number)
+        .toLocaleString("en-US");
+
+}
+
+
+
+/* ==========================================
+   SMOOTH COUNTER
+========================================== */
+
+function animateNumber(
+
+    elementId,
+    oldValue,
+    newValue,
+    prefix = ""
+
+){
+
+    const element =
+        document.getElementById(elementId);
+
+
+    if(!element){
+        return;
+    }
+
+
+    const duration = 700;
+
+    const startTime =
+        performance.now();
+
+
+    function update(currentTime){
+
+        const progress =
+            Math.min(
+
+                (currentTime - startTime)
+                / duration,
+
+                1
+
+            );
+
+
+        const value =
+            Math.floor(
+
+                oldValue +
+
+                (
+                    newValue -
+                    oldValue
+                ) * progress
+
+            );
+
+
+        element.innerText =
+            prefix +
+            formatNumber(value);
+
+
+        if(progress < 1){
+
+            requestAnimationFrame(update);
+
+        }
+
+    }
+
+
+    requestAnimationFrame(update);
+
+}
+
+
+
+/* ==========================================
+   DISPLAY DATA
+========================================== */
+
+function displayLiveStats(data){
+
+    const newTotalUsers =
+        Number(
+            data.totalUsers ??
+            liveStats.totalUsers
+        );
+
+
+    const newOnlineUsers =
+        Number(
+            data.onlineUsers ??
+            liveStats.onlineUsers
+        );
+
+
+    const newWorkingUsers =
+        Number(
+            data.workingUsers ??
+            liveStats.workingUsers
+        );
+
+
+    const newTodayEarners =
+        Number(
+            data.todayEarners ??
+            liveStats.todayEarners
+        );
+
+
+    const newTotalIncome =
+        Number(
+            data.totalIncome ??
+            liveStats.totalIncome
+        );
+
+
+    const newUsersToday =
+        Number(
+            data.newUsersToday ??
+            liveStats.newUsersToday
+        );
+
+
+
+    animateNumber(
+        "totalUsers",
+        liveStats.totalUsers,
+        newTotalUsers
+    );
+
+
+    animateNumber(
+        "onlineUsers",
+        liveStats.onlineUsers,
+        newOnlineUsers
+    );
+
+
+    animateNumber(
+        "workingUsers",
+        liveStats.workingUsers,
+        newWorkingUsers
+    );
+
+
+    animateNumber(
+        "todayEarners",
+        liveStats.todayEarners,
+        newTodayEarners
+    );
+
+
+    animateNumber(
+        "totalIncome",
+        liveStats.totalIncome,
+        newTotalIncome,
+        "৳"
+    );
+
+
+    animateNumber(
+        "newUsersToday",
+        liveStats.newUsersToday,
+        newUsersToday
+    );
+
+
+
+    /* Update local values */
+
+    liveStats.totalUsers =
+        newTotalUsers;
+
+    liveStats.onlineUsers =
+        newOnlineUsers;
+
+    liveStats.workingUsers =
+        newWorkingUsers;
+
+    liveStats.todayEarners =
+        newTodayEarners;
+
+    liveStats.totalIncome =
+        newTotalIncome;
+
+    liveStats.newUsersToday =
+        newUsersToday;
+
+}
+
+
+
+/* ==========================================
+   FIREBASE LIVE DATA
+========================================== */
+
+/*
+   Firebase Realtime Database-এ
+   এই path ব্যবহার করা হবে:
+
+   liveStats
+*/
+
+
+database
+    .ref("liveStats")
+    .on(
+
+        "value",
+
+        function(snapshot){
+
+            const data =
+                snapshot.val();
+
+
+            if(data){
+
+                displayLiveStats(data);
+
+            }
+
+        },
+
+        function(error){
+
+            console.error(
+                "Firebase Error:",
+                error
+            );
+
+        }
+
+    );
+
+
+
+/* ==========================================
+   INITIAL DISPLAY
+========================================== */
+
+function setInitialValues(){
+
+    document
+        .getElementById("totalUsers")
+        .innerText =
+        formatNumber(
+            liveStats.totalUsers
+        );
+
+
+    document
+        .getElementById("onlineUsers")
+        .innerText =
+        formatNumber(
+            liveStats.onlineUsers
+        );
+
+
+    document
+        .getElementById("workingUsers")
+        .innerText =
+        formatNumber(
+            liveStats.workingUsers
+        );
+
+
+    document
+        .getElementById("todayEarners")
+        .innerText =
+        formatNumber(
+            liveStats.todayEarners
+        );
+
+
+    document
+        .getElementById("totalIncome")
+        .innerText =
+        "৳" +
+        formatNumber(
+            liveStats.totalIncome
+        );
+
+
+    document
+        .getElementById("newUsersToday")
+        .innerText =
+        formatNumber(
+            liveStats.newUsersToday
+        );
+
+}
+
+
+
+/* ==========================================
+   ENTER APP
+========================================== */
+
+function enterApp(){
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+
+/* ==========================================
+   START
+========================================== */
+
+setInitialValues();
+
+
+</script>
+
+
+</body>
+
+</html>
